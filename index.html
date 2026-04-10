@@ -237,11 +237,64 @@ function copiarMensaje(){
 function infoVoz(){
   var msgs=document.getElementById("chatMsgs");
   var mb=document.createElement("div");mb.className="msg-bot";
-  mb.innerHTML="🎙️ <strong>Consultas por voz</strong><br><br>Esta función estará disponible próximamente en la app oficial de PRON-IA.<br><br>Por ahora puedes escribir tu consulta en el campo de texto. ✍️";
+  mb.innerHTML="🎙️ <strong>Consultas por voz</strong><br><br>Esta función estará disponible próximamente.";
   msgs.appendChild(mb);msgs.scrollTop=msgs.scrollHeight;
 }
 
-var historial=[];
+var reconocimiento=null;
+var escuchando=false;
+
+function toggleVoz(){
+  if(!('webkitSpeechRecognition' in window)&&!('SpeechRecognition' in window)){
+    alert("Tu navegador no soporta voz. Usa Chrome o Edge.");
+    return;
+  }
+  if(escuchando){pararVoz();return;}
+  var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  reconocimiento=new SR();
+  reconocimiento.lang="es-ES";
+  reconocimiento.continuous=false;
+  reconocimiento.interimResults=true;
+  var micBtn=document.getElementById("micBtn");
+  var input=document.getElementById("chatInput");
+  reconocimiento.onstart=function(){
+    escuchando=true;
+    micBtn.style.background="#166534";
+    micBtn.style.borderColor="#2ecc71";
+    micBtn.style.color="#fff";
+    micBtn.textContent="⏹️";
+    input.placeholder="Escuchando...";
+  };
+  reconocimiento.onresult=function(e){
+    var texto="";
+    for(var i=0;i<e.results.length;i++) texto+=e.results[i][0].transcript;
+    input.value=texto;
+  };
+  reconocimiento.onend=function(){
+    pararVoz();
+    var val=document.getElementById("chatInput").value.trim();
+    if(val) enviarMensaje();
+  };
+  reconocimiento.onerror=function(e){
+    pararVoz();
+    if(e.error==="not-allowed") alert("Permiso de micrófono denegado. Actívalo en la configuración del navegador.");
+    else if(e.error!=="no-speech") alert("Error de micrófono: "+e.error);
+  };
+  reconocimiento.start();
+}
+
+function pararVoz(){
+  escuchando=false;
+  if(reconocimiento) reconocimiento.stop();
+  var micBtn=document.getElementById("micBtn");
+  micBtn.style.background="#0d2b1a";
+  micBtn.style.borderColor="#1a4731";
+  micBtn.style.color="#4ade80";
+  micBtn.textContent="🎙️";
+  document.getElementById("chatInput").placeholder="Escribe o habla tu consulta...";
+}
+
+// Chat
 function enviarChip(btn){btn.parentElement.style.display="none";enviarTexto(btn.textContent);}
 function enviarMensaje(){var i=document.getElementById("chatInput");var t=i.value.trim();if(!t)return;i.value="";enviarTexto(t);}
 function enviarTexto(texto){
