@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#060f0a;color:#f0fdf4;line-height:1.6}
+.badge{display:inline-flex;align-items:center;gap:6px;background:#0d2b1a;border:1px solid #1a4731;border-radius:20px;padding:4px 14px;font-size:11px;font-weight:600;color:#2ecc71;letter-spacing:1.5px;margin-bottom:20px}
+.dot{width:7px;height:7px;border-radius:50%;background:#2ecc71;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+h1{font-size:clamp(36px,6vw,60px);font-weight:800;letter-spacing:-1px;line-height:1.1;color:#f0fdf4}
+h1 span{color:#2ecc71}
+.sub{font-size:16px;color:#6b9e80;margin-top:16px;max-width:520px;line-height:1.7}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;justify-content:center}
+.tag{background:#0d2b1a;border:1px solid #1a4731;color:#4ade80;font-size:12px;padding:5px 12px;border-radius:20px;font-weight:500}
+.btn-primary{background:linear-gradient(135deg,#166534,#15803d);color:#fff;border:none;border-radius:10px;padding:14px 32px;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 4px 20px rgba(21,128,61,.35)}
+.btn-secondary{background:transparent;color:#4ade80;border:1px solid #1a4731;border-radius:10px;padding:14px 28px;font-size:15px;font-weight:600;cursor:pointer}
+.btn-primary:hover{opacity:.9}
+.btn-secondary:hover{background:#0d2b1a}
+section{max-width:900px;margin:0 auto;padding:0 24px}
+.hero{text-align:center;padding:80px 24px 60px;max-width:700px;margin:0 auto}
+.divider{border:none;border-top:1px solid #0d2b1a;margin:60px 0}
+.section-label{font-size:11px;font-weight:700;letter-spacing:2px;color:#2ecc71;text-transform:uppercase;margin-bottom:12px}
+.section-title{font-size:clamp(22px,4vw,32px);font-weight:700;color:#f0fdf4;margin-bottom:8px}
+.section-sub{font-size:15px;color:#6b9e80;margin-bottom:40px}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.feat{background:#07140d;border:1px solid #0d2b1a;border-radius:14px;padding:24px;transition:.2s}
+.feat:hover{border-color:#1a4731;background:#0d2b1a}
+.feat h3{font-size:15px;font-weight:600;color:#f0fdf4;margin-bottom:6px}
+.feat p{font-size:13px;color:#6b9e80;line-height:1.6}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.plan{background:#07140d;border:1px solid #0d2b1a;border-radius:16px;padding:28px}
+.plan.pro{border-color:#166534;background:#071f12;position:relative}
+.plan-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#15803d;color:#fff;font-size:11px;font-weight:700;padding:4px 16px;border-radius:20px;letter-spacing:1px;white-space:nowrap}
+.plan-name{font-size:13px;font-weight:700;color:#4ade80;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px}
+.plan-price{font-size:40px;font-weight:800;color:#f0fdf4;line-height:1}
+.plan-price span{font-size:15px;font-weight:400;color:#6b9e80}
+.plan-desc{font-size:13px;color:#6b9e80;margin:10px 0 20px}
+.plan-feat{font-size:13px;color:#a3d9b8;padding:6px 0;border-bottom:1px solid #0d2b1a;display:flex;align-items:center;gap:8px}
+.plan-feat:last-of-type{border:none}
+.check{color:#2ecc71;font-size:12px;font-weight:700}
+.cross{color:#3a5c45;font-size:12px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;margin-top:40px}
+.stat{background:#07140d;border:1px solid #0d2b1a;border-radius:12px;padding:20px;text-align:center}
+.stat-n{font-size:28px;font-weight:800;color:#2ecc71}
+.stat-l{font-size:12px;color:#6b9e80;margin-top:4px}
+.cta-box{background:linear-gradient(135deg,#071f12,#0d2b1a);border:1px solid #1a4731;border-radius:20px;padding:48px 32px;text-align:center;margin:60px 0}
+.cta-box h2{font-size:28px;font-weight:700;margin-bottom:10px}
+.cta-box p{color:#6b9e80;margin-bottom:28px;font-size:15px}
+footer{text-align:center;padding:32px 24px;color:#2d4a38;font-size:12px;border-top:1px solid #0d2b1a}
+
+/* Chat integrado */
+.chat-section{background:#07140d;border:1px solid #1a4731;border-radius:20px;overflow:hidden;margin-bottom:60px}
+.chat-header{background:linear-gradient(135deg,#071f12,#0d2b1a);padding:20px 24px;display:flex;align-items:center;gap:14px;border-bottom:1px solid #1a4731}
+.chat-messages{padding:20px;height:340px;overflow-y:auto;display:flex;flex-direction:column;gap:12px}
+.chat-messages::-webkit-scrollbar{width:4px}
+.chat-messages::-webkit-scrollbar-track{background:#060f0a}
+.chat-messages::-webkit-scrollbar-thumb{background:#1a4731;border-radius:4px}
+.msg-bot{background:#0d2b1a;border:1px solid #1a4731;border-radius:12px 12px 12px 4px;padding:12px 16px;font-size:14px;color:#f0fdf4;line-height:1.6;max-width:85%;animation:fadeIn .3s ease}
+.msg-user{background:#166534;border-radius:12px 12px 4px 12px;padding:12px 16px;font-size:14px;color:#fff;line-height:1.6;max-width:85%;align-self:flex-end;animation:fadeIn .3s ease}
+.msg-typing{background:#0d2b1a;border:1px solid #1a4731;border-radius:12px 12px 12px 4px;padding:12px 16px;font-size:20px;color:#2ecc71;max-width:70px;animation:fadeIn .3s ease}
+.chip{background:#0d2b1a;border:1px solid #1a4731;color:#4ade80;font-size:12px;padding:6px 12px;border-radius:20px;cursor:pointer;transition:.2s}
+.chip:hover{background:#1a4731}
+.chat-input-row{padding:16px 20px;border-top:1px solid #0d2b1a;display:flex;gap:10px;background:#060f0a}
+.chat-input-row input{flex:1;background:#07140d;border:1px solid #1a4731;border-radius:10px;padding:12px 16px;color:#f0fdf4;font-size:14px;outline:none}
+.chat-input-row input:focus{border-color:#2ecc71}
+.chat-input-row input::placeholder{color:#3a5c45}
+.chat-input-row button{background:#15803d;border:none;border-radius:10px;padding:12px 18px;color:#fff;font-size:18px;cursor:pointer}
+.chat-input-row button:hover{background:#166534}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* Modal compartir */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:1000;justify-content:center;align-items:center}
+.modal-overlay.active{display:flex}
+.modal-box{background:#07140d;border:1px solid #1a4731;border-radius:20px;padding:32px;max-width:380px;width:90%;position:relative}
+.modal-close{position:absolute;top:14px;right:16px;background:none;border:none;color:#6b9e80;font-size:22px;cursor:pointer}
+.share-btn{display:flex;align-items:center;gap:12px;width:100%;background:#0d2b1a;border:1px solid #1a4731;border-radius:10px;padding:14px 16px;color:#f0fdf4;font-size:14px;font-weight:600;cursor:pointer;margin-bottom:10px;text-align:left}
+.share-btn:hover{background:#1a4731}
+.share-btn:last-child{margin-bottom:0}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge"><div class="dot"></div>SISTEMA ACTIVO</div>
+  <svg width="64" height="64" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin:0 auto 24px;display:block">
+    <rect width="44" height="44" rx="10" fill="#0a3d2e"/>
+    <circle cx="22" cy="22" r="14" fill="#0d5c3e"/>
+    <circle cx="22" cy="22" r="10" fill="none" stroke="#2ecc71" stroke-width="1.2"/>
+    <path d="M22 14L28 17V22C28 25.5 25.5 28.5 22 30C18.5 28.5 16 25.5 16 22V17L22 14Z" fill="#0a3d2e" stroke="#2ecc71" stroke-width="1.2"/>
+    <path d="M22 19C22 19 19 21 19 23.5C19 25 20.3 26 22 26C23.7 26 25 25 25 23.5C25 21 22 19 22 19Z" fill="#2ecc71"/>
+  </svg>
+  <h1>PRON<span>-IA</span></h1>
+  <p style="font-size:13px;font-weight:700;letter-spacing:3px;color:#2ecc71;margin-top:6px">PROTECCIÓN · NATURALEZA · INTELIGENCIA</p>
+  <p class="sub" style="margin:16px auto 0">El primer asistente de inteligencia artificial especializado en medio ambiente y bienestar animal para agentes y profesionales de España.</p>
+  <div class="tags">
+    <span class="tag">Guardia Civil</span><span class="tag">Policía Local</span><span class="tag">Agentes Forestales</span><span class="tag">Fiscalía</span><span class="tag">Juzgados</span><span class="tag">Técnicos Ambientales</span>
+  </div>
+  <div class="hero-btns" style="display:flex;gap:12px;justify-content:center;margin-top:32px;flex-wrap:wrap">
+    <button class="btn-primary" onclick="document.getElementById('prueba').scrollIntoView({behavior:'smooth'})">Probar ahora — gratis</button>
+    <button class="btn-secondary" onclick="document.getElementById('funciones').scrollIntoView({behavior:'smooth'})">Ver funciones</button>
+    <button class="btn-secondary" onclick="abrirModal()" style="display:flex;align-items:center;gap:8px">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      Compartir
+    </button>
+  </div>
+  <style>
+    @media(max-width:520px){
+      .hero-btns{flex-direction:column !important;align-items:stretch !important}
+      .hero-btns .btn-primary,.hero-btns .btn-secondary{width:100%;justify-content:center}
+      .stats{grid-template-columns:1fr 1fr !important}
+      .chat-messages{height:260px !important}
+    }
+  </style>
+</div>
+
+<section>
+
+
+  <hr class="divider" id="funciones">
+
+  <div style="text-align:center">
+    <div class="section-label">Funciones</div>
+    <div class="section-title">Todo lo que necesita en una consulta</div>
+    <div class="section-sub">Respuestas basadas en normativa oficial actualizada en tiempo real</div>
+  </div>
+  <div class="features">
+    <div class="feat"><div style="font-size:24px;margin-bottom:14px">⚖️</div><h3>Asesoramiento jurídico</h3><p>Normativa estatal y autonómica, Código Penal ambiental, jurisprudencia del CENDOJ.</p></div>
+    <div class="feat"><div style="font-size:24px;margin-bottom:14px">📄</div><h3>Redacción de documentos</h3><p>Atestados, informes, propuestas de sanción y mandamientos listos para firmar.</p></div>
+    <div class="feat"><div style="font-size:24px;margin-bottom:14px">🐾</div><h3>Bienestar animal</h3><p>Ley 7/2023, CITES, identificación de especies protegidas y protocolos de actuación.</p></div>
+    <div class="feat"><div style="font-size:24px;margin-bottom:14px">🌍</div><h3>Cooperación internacional</h3><p>Activa alertas de cooperación cuando el caso trasciende las fronteras nacionales.</p></div>
+    <div class="feat"><div style="font-size:24px;margin-bottom:14px">🔍</div><h3>Búsqueda en tiempo real</h3><p>Consulta BOE, MITECO, Noticias Jurídicas y CENDOJ en cada respuesta.</p></div>
+    <div class="feat"><div style="font-size:24px;margin-bottom:14px">🗺️</div><h3>Organigramas y resúmenes</h3><p>Visualiza la estructura de un caso o normativa compleja en segundos.</p></div>
+  </div>
+
+  <hr class="divider" id="prueba">
+
+  <!-- CHAT INTEGRADO -->
+  <div style="text-align:center;margin-bottom:32px">
+    <div class="section-label">Prueba en vivo</div>
+    <div class="section-title">Consulta a PRON-IA ahora mismo</div>
+    <div class="section-sub">Sin registro. Sin instalación. Hazle cualquier pregunta.</div>
+  </div>
+
+  <div class="chat-section">
+    <div class="chat-header">
+      <div style="width:44px;height:44px;border-radius:50%;overflow:hidden;border:2px solid #2ecc71;flex-shrink:0">
+        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" width="44" height="44">
+          <rect width="60" height="60" fill="#c8a882"/>
+          <rect x="10" y="48" width="40" height="14" rx="6" fill="#1a4731"/>
+          <path d="M24 50 L30 54 L36 50 L34 46 L30 50 L26 46Z" fill="#166534"/>
+          <ellipse cx="30" cy="26" rx="14" ry="16" fill="#c8a882"/>
+          <ellipse cx="30" cy="13" rx="14" ry="7" fill="#3b2314"/>
+          <rect x="16" y="12" width="5" height="10" rx="3" fill="#3b2314"/>
+          <rect x="39" y="12" width="5" height="10" rx="3" fill="#3b2314"/>
+          <path d="M21 21 Q25 19 29 21" stroke="#3b2314" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M31 21 Q35 19 39 21" stroke="#3b2314" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <ellipse cx="25" cy="25" rx="3" ry="3.2" fill="white"/>
+          <ellipse cx="35" cy="25" rx="3" ry="3.2" fill="white"/>
+          <ellipse cx="25.5" cy="25.5" rx="1.8" ry="1.8" fill="#3b2314"/>
+          <ellipse cx="35.5" cy="25.5" rx="1.8" ry="1.8" fill="#3b2314"/>
+          <circle cx="26" cy="25" r="0.5" fill="white"/>
+          <circle cx="36" cy="25" r="0.5" fill="white"/>
+          <path d="M29 28 Q30 31 31 28" stroke="#a07850" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+          <path d="M25 33 Q30 37 35 33" stroke="#8b4a3a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <ellipse cx="16" cy="26" rx="2.5" ry="3.5" fill="#c8a882"/>
+          <ellipse cx="44" cy="26" rx="2.5" ry="3.5" fill="#c8a882"/>
+        </svg>
+      </div>
+      <div>
+        <div style="font-size:15px;font-weight:700;color:#f0fdf4">PRON-IA · Asistente</div>
+        <div style="font-size:12px;color:#2ecc71;display:flex;align-items:center;gap:5px"><span style="width:7px;height:7px;background:#2ecc71;border-radius:50%;display:inline-block;animation:pulse 2s infinite"></span>En línea — Responde al instante</div>
+      </div>
+    </div>
+
+    <div class="chat-messages" id="chatMsgs">
+      <div class="msg-bot">¡Hola! 👋 Soy el asistente de <strong>PRON-IA</strong>.<br><br>Estoy especializada en <strong>medio ambiente, protección de la naturaleza y bienestar animal</strong>. Puedo ayudarte con normativa, redacción de atestados, jurisprudencia y mucho más.<br><br>¿Cuál es tu consulta?</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px" id="chips">
+        <button class="chip" onclick="enviarChip(this)">¿Qué es PRON-IA?</button>
+        <button class="chip" onclick="enviarChip(this)">¿Qué normativa cubre?</button>
+        <button class="chip" onclick="enviarChip(this)">¿Cómo redacta atestados?</button>
+        <button class="chip" onclick="enviarChip(this)">¿Cuánto cuesta?</button>
+        <button class="chip" onclick="enviarChip(this)">Ley 7/2023 bienestar animal</button>
+      </div>
+    </div>
+
+    <div class="chat-input-row">
+      <input id="chatInput" type="text" placeholder="Escribe o habla tu consulta..." onkeydown="if(event.key==='Enter')enviarMensaje()"/>
+      <button id="micBtn" onclick="infoVoz()" title="Consulta por voz" style="background:#0d2b1a;border:1px solid #1a4731;border-radius:10px;padding:12px 14px;color:#4ade80;font-size:18px;cursor:pointer">🎙️</button>
+      <button onclick="enviarMensaje()">➤</button>
+    </div>
+  </div>
+
+  <hr class="divider" id="planes">
+
+  <div style="text-align:center">
+    <div class="section-label">Planes</div>
+    <div class="section-title">Acceso para todos los agentes</div>
+    <div class="section-sub">Sin compromiso de permanencia. Cancela cuando quieras.</div>
+  </div>
+  <div class="plans">
+    <div class="plan">
+      <div class="plan-name">Gratuito</div>
+      <div class="plan-price">0€<span>/mes</span></div>
+      <div class="plan-desc">Para probar PRON-IA sin coste</div>
+      <div class="plan-feat"><span class="check">✓</span> 5 consultas por día</div>
+      <div class="plan-feat"><span class="check">✓</span> Normativa básica</div>
+      <div class="plan-feat"><span class="cross">✗</span> Búsqueda web en tiempo real</div>
+      <div class="plan-feat"><span class="cross">✗</span> Redacción de documentos</div>
+      <div class="plan-feat"><span class="cross">✗</span> Jurisprudencia penal</div>
+      <div class="plan-feat"><span class="cross">✗</span> Descarga en PDF</div>
+      <button class="btn-primary" style="width:100%;margin-top:20px" onclick="document.getElementById('prueba').scrollIntoView({behavior:'smooth'})">Probar ahora gratis</button>
+    </div>
+    <div class="plan pro">
+      <div class="plan-badge">MÁS POPULAR</div>
+      <div class="plan-name">Pro</div>
+      <div class="plan-price">5€<span>/mes por agente</span></div>
+      <div class="plan-desc">Acceso completo para profesionales</div>
+      <div class="plan-feat"><span class="check">✓</span> Consultas ilimitadas</div>
+      <div class="plan-feat"><span class="check">✓</span> Búsqueda web en tiempo real</div>
+      <div class="plan-feat"><span class="check">✓</span> Redacción de atestados</div>
+      <div class="plan-feat"><span class="check">✓</span> Propuestas de sanción</div>
+      <div class="plan-feat"><span class="check">✓</span> Jurisprudencia penal</div>
+      <div class="plan-feat"><span class="check">✓</span> Descarga en PDF</div>
+      <button class="btn-secondary" style="width:100%;margin-top:20px">Próximamente</button>
+    </div>
+    <div class="plan">
+      <div class="plan-name">Institucional</div>
+      <div class="plan-price" style="font-size:28px">A medida</div>
+      <div class="plan-desc">Para ayuntamientos, consejerías y cuerpos de seguridad</div>
+      <div class="plan-feat"><span class="check">✓</span> Agentes ilimitados</div>
+      <div class="plan-feat"><span class="check">✓</span> Panel de administración</div>
+      <div class="plan-feat"><span class="check">✓</span> Formación incluida</div>
+      <div class="plan-feat"><span class="check">✓</span> Soporte prioritario</div>
+      <div class="plan-feat"><span class="check">✓</span> Personalización de marca</div>
+      <div class="plan-feat"><span class="check">✓</span> Factura oficial</div>
+      <button class="btn-secondary" style="width:100%;margin-top:20px">Solicitar presupuesto</button>
+    </div>
+  </div>
+
+  <div class="cta-box">
+    <h2>Listo para usar ahora mismo</h2>
+    <p>Sin instalación. Sin formación. Haz tu primera consulta en segundos.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <button class="btn-primary" onclick="document.getElementById('prueba').scrollIntoView({behavior:'smooth'})">Probar gratis ahora</button>
+      <button class="btn-secondary" onclick="abrirModal()">Compartir con mi unidad</button>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL COMPARTIR -->
+<div class="modal-overlay" id="modalCompartir">
+  <div class="modal-box">
+    <button class="modal-close" onclick="cerrarModal()">✕</button>
+    <div style="font-size:28px;margin-bottom:8px">🌿</div>
+    <h3 style="font-size:18px;font-weight:700;color:#f0fdf4;margin-bottom:4px">Compartir PRON-IA</h3>
+    <p style="font-size:13px;color:#6b9e80;margin-bottom:20px">Envía PRON-IA a tu unidad o compañeros</p>
+    <button class="share-btn" onclick="porWhatsApp()"><span style="font-size:22px;width:28px;text-align:center">💬</span> Enviar por WhatsApp</button>
+    <button class="share-btn" onclick="porEmail()"><span style="font-size:22px;width:28px;text-align:center">✉️</span> Enviar por Email</button>
+    <button class="share-btn" onclick="copiarMensaje()"><span style="font-size:22px;width:28px;text-align:center">📋</span> <span id="copiarLabel">Copiar mensaje</span></button>
+  </div>
+</div>
+
+<footer>
+  <p>PRON-IA — Protección · Naturaleza · Inteligencia</p>
+  <p style="margin-top:6px">⚠️ Información orientativa. Debe ser validada por autoridad competente.</p>
+</footer>
+
+<script>
+var URL_LANDING = "https://claude.ai/public/artifacts/e48eb2d1-054e-4142-9088-3201ae82d22b";
+var MENSAJE = "🌿 PRON-IA — El asistente de IA especializado en medio ambiente y bienestar animal.\n\n✅ Consultas jurídicas al instante\n✅ Redacción de atestados e informes\n✅ Normativa estatal y autonómica actualizada\n✅ Ley 7/2023 — Bienestar animal\n✅ Jurisprudencia penal ambiental\n\n👉 Accede aquí: " + URL_LANDING;
+
+// Modal
+function abrirModal(){ document.getElementById("modalCompartir").classList.add("active"); }
+function cerrarModal(){ document.getElementById("modalCompartir").classList.remove("active"); }
+document.getElementById("modalCompartir").addEventListener("click", function(e){ if(e.target===this) cerrarModal(); });
+function porWhatsApp(){ window.open("https://wa.me/?text="+encodeURIComponent(MENSAJE),"_blank"); }
+function porEmail(){ window.location.href="mailto:?subject="+encodeURIComponent("PRON-IA: IA para protección ambiental")+"&body="+encodeURIComponent(MENSAJE); }
+function copiarMensaje(){
+  var l=document.getElementById("copiarLabel");
+  var t=document.createElement("textarea");
+  t.value=MENSAJE;
+  t.style.cssText="position:fixed;top:0;left:0;width:2em;height:2em;border:none;outline:none;boxShadow:none;background:transparent;opacity:0";
+  document.body.appendChild(t);
+  t.focus();
+  t.select();
+  t.setSelectionRange(0,99999);
+  var ok=false;
+  try{ ok=document.execCommand("copy"); }catch(e){}
+  document.body.removeChild(t);
+  if(ok){
+    l.textContent="✅ ¡Copiado!";
+    setTimeout(function(){ l.textContent="Copiar mensaje"; },2500);
+  } else {
+    // Último recurso: mostrar texto en un prompt para que el usuario lo copie manualmente
+    window.prompt("Copia este mensaje (Ctrl+C):", MENSAJE);
+  }
+}
+
+// Info voz
+function infoVoz(){
+  var msgs = document.getElementById("chatMsgs");
+  var mb = document.createElement("div");
+  mb.className = "msg-bot";
+  mb.innerHTML = "🎙️ <strong>Consultas por voz</strong><br><br>Esta función estará disponible próximamente en la app oficial de PRON-IA.<br><br>Por ahora puedes escribir tu consulta en el campo de texto. ✍️";
+  msgs.appendChild(mb);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+// Chat
+var historial = [];
+function enviarChip(btn){ btn.parentElement.style.display="none"; enviarTexto(btn.textContent); }
+function enviarMensaje(){ var i=document.getElementById("chatInput"); var t=i.value.trim(); if(!t) return; i.value=""; enviarTexto(t); }
+function enviarTexto(texto){
+  var msgs=document.getElementById("chatMsgs");
+  var mu=document.createElement("div"); mu.className="msg-user"; mu.textContent=texto; msgs.appendChild(mu);
+  var mt=document.createElement("div"); mt.className="msg-typing"; mt.textContent="···"; msgs.appendChild(mt);
+  msgs.scrollTop=msgs.scrollHeight;
+  historial.push({role:"user",content:texto});
+  fetch("https://api.anthropic.com/v1/messages",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({
+      model:"claude-sonnet-4-20250514",
+      max_tokens:1000,
+      system:"Eres la asistente virtual de PRON-IA, llamada Ana. Eres una agente medioambiental experta, amable y profesional. PRON-IA es un asistente de inteligencia artificial especializado en medio ambiente, protección de la naturaleza y bienestar animal para profesionales de España: Guardia Civil, Policía Local, Agentes Forestales, Fiscalía, Juzgados y Técnicos Ambientales. Funciones: asesoramiento jurídico (Código Penal, normativa estatal y autonómica, jurisprudencia CENDOJ), redacción de atestados e informes, Ley 7/2023 bienestar animal, CITES, búsqueda en tiempo real en BOE y MITECO. Planes: Gratuito (5 consultas/día, normativa básica) y Pro (5€/mes, consultas ilimitadas, todas las funciones). Plan Institucional a medida para ayuntamientos y cuerpos. Tu objetivo es resolver dudas, demostrar el valor de PRON-IA y animar a probarlo gratis. Responde siempre en español, de forma clara, breve y profesional (máximo 4 frases). Si te hacen una consulta técnica real, respóndela con autoridad para demostrar el valor del producto.",
+      messages:historial
+    })
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    mt.remove();
+    var resp=d.content&&d.content[0]?d.content[0].text:"Lo siento, hubo un error. Inténtalo de nuevo.";
+    historial.push({role:"assistant",content:resp});
+    var mb=document.createElement("div"); mb.className="msg-bot"; mb.innerHTML=resp.replace(/\n/g,"<br>"); msgs.appendChild(mb);
+    msgs.scrollTop=msgs.scrollHeight;
+  })
+  .catch(function(){
+    mt.remove();
+    var mb=document.createElement("div"); mb.className="msg-bot"; mb.textContent="Lo siento, hubo un error de conexión. Inténtalo de nuevo."; msgs.appendChild(mb);
+  });
+}
+</script>
+</body>
+</html>
