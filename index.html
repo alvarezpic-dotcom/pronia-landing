@@ -133,57 +133,33 @@ footer{text-align:center;padding:32px 24px;color:#2d4a38;font-size:12px;border-t
 
   <hr class="divider" id="prueba">
 
-  <div style="text-align:center;margin-bottom:32px">
+  <div style="text-align:center;margin-bottom:40px">
     <div class="section-label">Prueba en vivo</div>
     <div class="section-title">Consulta a PRON-IA ahora mismo</div>
     <div class="section-sub">Sin registro. Sin instalación. Hazle cualquier pregunta.</div>
-  </div>
-
-  <div class="chat-section">
-    <div class="chat-header">
-      <div style="width:44px;height:44px;border-radius:50%;overflow:hidden;border:2px solid #2ecc71;flex-shrink:0">
-        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" width="44" height="44">
-          <rect width="60" height="60" fill="#c8a882"/>
-          <rect x="10" y="48" width="40" height="14" rx="6" fill="#1a4731"/>
-          <path d="M24 50 L30 54 L36 50 L34 46 L30 50 L26 46Z" fill="#166534"/>
-          <ellipse cx="30" cy="26" rx="14" ry="16" fill="#c8a882"/>
-          <ellipse cx="30" cy="13" rx="14" ry="7" fill="#3b2314"/>
-          <rect x="16" y="12" width="5" height="10" rx="3" fill="#3b2314"/>
-          <rect x="39" y="12" width="5" height="10" rx="3" fill="#3b2314"/>
-          <path d="M21 21 Q25 19 29 21" stroke="#3b2314" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-          <path d="M31 21 Q35 19 39 21" stroke="#3b2314" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-          <ellipse cx="25" cy="25" rx="3" ry="3.2" fill="white"/>
-          <ellipse cx="35" cy="25" rx="3" ry="3.2" fill="white"/>
-          <ellipse cx="25.5" cy="25.5" rx="1.8" ry="1.8" fill="#3b2314"/>
-          <ellipse cx="35.5" cy="25.5" rx="1.8" ry="1.8" fill="#3b2314"/>
-          <circle cx="26" cy="25" r="0.5" fill="white"/>
-          <circle cx="36" cy="25" r="0.5" fill="white"/>
-          <path d="M29 28 Q30 31 31 28" stroke="#a07850" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-          <path d="M25 33 Q30 37 35 33" stroke="#8b4a3a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-          <ellipse cx="16" cy="26" rx="2.5" ry="3.5" fill="#c8a882"/>
-          <ellipse cx="44" cy="26" rx="2.5" ry="3.5" fill="#c8a882"/>
-        </svg>
+    <a href="https://claude.ai/public/artifacts/6fed0430-8142-4192-8d8e-81d8988241a1" target="_blank" style="display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,#166534,#15803d);color:#fff;border:none;border-radius:14px;padding:18px 36px;font-size:16px;font-weight:700;cursor:pointer;text-decoration:none;box-shadow:0 4px 24px rgba(21,128,61,.4);margin-top:8px">
+      <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" width="36" height="36" style="border-radius:50%;border:2px solid rgba(255,255,255,.4)">
+        <rect width="60" height="60" fill="#c8a882"/>
+        <rect x="10" y="48" width="40" height="14" rx="6" fill="#1a4731"/>
+        <path d="M24 50 L30 54 L36 50 L34 46 L30 50 L26 46Z" fill="#166534"/>
+        <ellipse cx="30" cy="26" rx="14" ry="16" fill="#c8a882"/>
+        <ellipse cx="30" cy="13" rx="14" ry="7" fill="#3b2314"/>
+        <rect x="16" y="12" width="5" height="10" rx="3" fill="#3b2314"/>
+        <rect x="39" y="12" width="5" height="10" rx="3" fill="#3b2314"/>
+        <ellipse cx="25" cy="25" rx="3" ry="3.2" fill="white"/>
+        <ellipse cx="35" cy="25" rx="3" ry="3.2" fill="white"/>
+        <ellipse cx="25.5" cy="25.5" rx="1.8" ry="1.8" fill="#3b2314"/>
+        <ellipse cx="35.5" cy="25.5" rx="1.8" ry="1.8" fill="#3b2314"/>
+        <path d="M25 33 Q30 37 35 33" stroke="#8b4a3a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <ellipse cx="16" cy="26" rx="2.5" ry="3.5" fill="#c8a882"/>
+        <ellipse cx="44" cy="26" rx="2.5" ry="3.5" fill="#c8a882"/>
+      </svg>
+      <div style="text-align:left">
+        <div style="font-size:16px;font-weight:700">Hablar con Ana — PRON-IA</div>
+        <div style="font-size:12px;opacity:.8;margin-top:2px">Asistente medioambiental · Gratis</div>
       </div>
-      <div>
-        <div style="font-size:15px;font-weight:700;color:#f0fdf4">PRON-IA · Asistente</div>
-        <div style="font-size:12px;color:#2ecc71;display:flex;align-items:center;gap:5px"><span style="width:7px;height:7px;background:#2ecc71;border-radius:50%;display:inline-block;animation:pulse 2s infinite"></span>En línea — Responde al instante</div>
-      </div>
-    </div>
-    <div class="chat-messages" id="chatMsgs">
-      <div class="msg-bot">¡Hola! 👋 Soy el asistente de <strong>PRON-IA</strong>.<br><br>Estoy especializada en <strong>medio ambiente, protección de la naturaleza y bienestar animal</strong>. Puedo ayudarte con normativa, redacción de atestados, jurisprudencia y mucho más.<br><br>¿Cuál es tu consulta?</div>
-      <div style="display:flex;flex-wrap:wrap;gap:6px" id="chips">
-        <button class="chip" onclick="enviarChip(this)">¿Qué es PRON-IA?</button>
-        <button class="chip" onclick="enviarChip(this)">¿Qué normativa cubre?</button>
-        <button class="chip" onclick="enviarChip(this)">¿Cómo redacta atestados?</button>
-        <button class="chip" onclick="enviarChip(this)">¿Cuánto cuesta?</button>
-        <button class="chip" onclick="enviarChip(this)">Ley 7/2023 bienestar animal</button>
-      </div>
-    </div>
-    <div class="chat-input-row">
-      <input id="chatInput" type="text" placeholder="Escribe o habla tu consulta..." onkeydown="if(event.key==='Enter')enviarMensaje()"/>
-      <button id="micBtn" onclick="infoVoz()" title="Consulta por voz" style="background:#0d2b1a;border:1px solid #1a4731;border-radius:10px;padding:12px 14px;color:#4ade80;font-size:18px;cursor:pointer">🎙️</button>
-      <button onclick="enviarMensaje()">➤</button>
-    </div>
+      <span style="font-size:20px;margin-left:4px">↗</span>
+    </a>
   </div>
 
   <hr class="divider" id="planes">
@@ -194,29 +170,29 @@ footer{text-align:center;padding:32px 24px;color:#2d4a38;font-size:12px;border-t
     <div class="section-sub">Sin compromiso de permanencia. Cancela cuando quieras.</div>
   </div>
   <div class="plans">
-    <div class="plan">
+    <div class="plan pro" style="border-color:#166534">
+      <div class="plan-badge">ACCESO LIBRE</div>
       <div class="plan-name">Gratuito</div>
       <div class="plan-price">0€<span>/mes</span></div>
-      <div class="plan-desc">Para probar PRON-IA sin coste</div>
-      <div class="plan-feat"><span class="check">✓</span> 5 consultas por día</div>
-      <div class="plan-feat"><span class="check">✓</span> Normativa básica</div>
-      <div class="plan-feat"><span class="cross">✗</span> Búsqueda web en tiempo real</div>
-      <div class="plan-feat"><span class="cross">✗</span> Redacción de documentos</div>
-      <div class="plan-feat"><span class="cross">✗</span> Jurisprudencia penal</div>
-      <div class="plan-feat"><span class="cross">✗</span> Descarga en PDF</div>
-      <button class="btn-primary" style="width:100%;margin-top:20px" onclick="document.getElementById('prueba').scrollIntoView({behavior:'smooth'})">Probar ahora gratis</button>
-    </div>
-    <div class="plan pro">
-      <div class="plan-badge">MÁS POPULAR</div>
-      <div class="plan-name">Pro</div>
-      <div class="plan-price">5€<span>/mes por agente</span></div>
-      <div class="plan-desc">Acceso completo para profesionales</div>
+      <div class="plan-desc">Acceso completo durante el lanzamiento</div>
       <div class="plan-feat"><span class="check">✓</span> Consultas ilimitadas</div>
+      <div class="plan-feat"><span class="check">✓</span> Normativa estatal y autonómica</div>
       <div class="plan-feat"><span class="check">✓</span> Búsqueda web en tiempo real</div>
       <div class="plan-feat"><span class="check">✓</span> Redacción de atestados</div>
-      <div class="plan-feat"><span class="check">✓</span> Propuestas de sanción</div>
       <div class="plan-feat"><span class="check">✓</span> Jurisprudencia penal</div>
+      <div class="plan-feat"><span class="check">✓</span> Bienestar animal — Ley 7/2023</div>
+      <button class="btn-primary" style="width:100%;margin-top:20px" onclick="document.getElementById('prueba').scrollIntoView({behavior:'smooth'})">Empezar gratis ahora</button>
+    </div>
+    <div class="plan">
+      <div class="plan-name">Pro</div>
+      <div class="plan-price" style="font-size:28px">Próximo</div>
+      <div class="plan-desc">Funciones avanzadas — próximamente</div>
+      <div class="plan-feat"><span class="check">✓</span> Todo lo del plan gratuito</div>
       <div class="plan-feat"><span class="check">✓</span> Descarga en PDF</div>
+      <div class="plan-feat"><span class="check">✓</span> Historial de consultas</div>
+      <div class="plan-feat"><span class="check">✓</span> Soporte prioritario</div>
+      <div class="plan-feat"><span class="check">✓</span> Integración con sistemas policiales</div>
+      <div class="plan-feat"><span class="check">✓</span> Firma digital de documentos</div>
       <button class="btn-secondary" style="width:100%;margin-top:20px">Próximamente</button>
     </div>
     <div class="plan">
@@ -309,7 +285,7 @@ function enviarTexto(texto){
     body:JSON.stringify({
       model:"claude-sonnet-4-20250514",
       max_tokens:1000,
-      system:"Eres la asistente virtual de PRON-IA, llamada Ana. Eres una agente medioambiental experta, amable y profesional. PRON-IA es un asistente de inteligencia artificial especializado en medio ambiente, protección de la naturaleza y bienestar animal para profesionales de España: Guardia Civil, Policía Local, Agentes Forestales, Fiscalía, Juzgados y Técnicos Ambientales. Funciones: asesoramiento jurídico (Código Penal, normativa estatal y autonómica, jurisprudencia CENDOJ), redacción de atestados e informes, Ley 7/2023 bienestar animal, CITES, búsqueda en tiempo real en BOE y MITECO. Planes: Gratuito (5 consultas/día, normativa básica) y Pro (5€/mes, consultas ilimitadas, todas las funciones). Plan Institucional a medida para ayuntamientos y cuerpos. Tu objetivo es resolver dudas, demostrar el valor de PRON-IA y animar a probarlo gratis. Responde siempre en español, de forma clara, breve y profesional (máximo 4 frases). Si te hacen una consulta técnica real, respóndela con autoridad para demostrar el valor del producto.",
+      system:"Eres Ana, asistente jurídico-medioambiental de PRON-IA. Actúas como una experta con 20 años de experiencia en derecho ambiental, bienestar animal y procedimiento policial en España. Tu perfil: conoces en profundidad el Código Penal (arts. 325-340), la Ley 7/2023 de bienestar animal, CITES, la Ley 42/2007 de patrimonio natural, normativa autonómica y jurisprudencia del Tribunal Supremo y CENDOJ.\n\nCÓMO RESPONDES:\n- Sé directa y resolutiva. Ve al grano desde la primera línea.\n- Estructura siempre tus respuestas: 1) Respuesta concreta, 2) Base legal aplicable, 3) Pasos de actuación recomendados.\n- Usa lenguaje técnico-jurídico pero comprensible.\n- Si la consulta implica una infracción, indica si es administrativa o penal, el rango de sanción y el procedimiento a seguir.\n- Si falta información para responder con precisión, haz UNA sola pregunta clave para orientar mejor.\n- Nunca respondas con frases vagas. Siempre ofrece una respuesta de valor aunque sea provisional.\n- Finaliza siempre con un paso de acción claro: qué debe hacer el agente a continuación.\n- Máximo 6 frases por respuesta. Conciso y de alto impacto.",
       messages:historial
     })
   })
